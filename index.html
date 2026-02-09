@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <!-- viewport penting supaya tampilan mobile benar -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ART PROMPT STUDIO</title>
+
+  <!-- font monospace mirip screenshot -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- MENU ICON (kanan atas) -->
+  <div id="menuBtn" class="menu-btn" onclick="toggleSidebar()">☰</div>
+
+  <!-- SIDEBAR (slide-in) -->
+  <aside id="sidebar" class="sidebar">
+    <h2>MENU</h2>
+    <button class="menu-item" onclick="focusIdea()">Generator</button>
+    <button class="menu-item" onclick="showInfo()">Dokumentasi API</button>
+    <button class="menu-item" onclick="showAbout()">Tentang</button>
+    <p class="sb-foot">© 2026 BY : ART</p>
+    <button class="close-menu" onclick="toggleSidebar()">Tutup</button>
+  </aside>
+
+  <!-- MAIN PANEL -->
+  <main class="panel" role="main">
+
+    <!-- top: REC + title -->
+    <div class="panel-top">
+      <span class="rec">REC</span>
+      <h1 class="title">ART PROMPT STUDIO</h1>
+    </div>
+
+    <hr class="divider">
+
+    <!-- API KEY area (sekarang visible di panel) -->
+    <label class="label">OPENAI API KEY (disimpan sementara)</label>
+    <div class="row">
+      <input id="apiInput" type="password" placeholder="Masukkan API key: sk-..." autocomplete="off">
+      <button id="saveApiBtn" onclick="saveApiKey()">Simpan</button>
+    </div>
+    <div class="row small">
+      <button class="muted" onclick="clearApiKey()">Hapus API (hapus dari sesi)</button>
+      <div id="apiStatus" class="api-status">API: —</div>
+    </div>
+
+    <!-- FORM utama -->
+    <label class="label">IDE / TARGET PROMPT</label>
+    <input id="idea" type="text" placeholder="Contoh: buatkan website portfolio sederhana">
+
+    <label class="label">JENIS AI</label>
+    <select id="aiType">
+      <option value="coding">Coding</option>
+      <option value="chat">ChatGPT</option>
+      <option value="story">Story</option>
+      <option value="image">Image AI</option>
+    </select>
+
+    <label class="label">TINGKAT DETAIL</label>
+    <select id="detail">
+      <option value="simple">Sederhana</option>
+      <option value="normal">Normal</option>
+      <option value="pro">Profesional</option>
+    </select>
+
+    <!-- tombol besar -->
+    <button class="btn" onclick="generateOffline()">Generate Prompt (Offline)</button>
+    <button class="btn" onclick="generateOnline()">Generate AI (Online)</button>
+
+    <!-- hasil -->
+    <label class="label">HASIL</label>
+    <textarea id="result" readonly placeholder="Hasil akan muncul di sini..."></textarea>
+
+    <div class="row">
+      <button class="btn" onclick="copyResult()">Copy Result</button>
+      <button class="btn muted" onclick="saveResultToHistory()">Simpan ke Riwayat</button>
+    </div>
+
+    <!-- riwayat -->
+    <label class="label">Riwayat Prompt</label>
+    <div id="history" class="history"></div>
+    <div class="row small">
+      <button class="muted" onclick="clearHistory()">Hapus Riwayat</button>
+      <div class="muted">BY : ART | APP ID : ART-AI-310922</div>
+    </div>
+
+  </main>
+
+<script src="app.js"></script>
+</body>
+</html>
